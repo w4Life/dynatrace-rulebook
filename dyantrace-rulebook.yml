@@ -1,0 +1,14 @@
+---
+- name: Listen for events on dt_webhook
+  hosts: all
+  sources:
+    - dynatrace.event_driven_ansible.dt_webhook:
+        host: 0.0.0.0
+        port: 5000
+        token: '123456789'
+
+  rules:
+    - name: print event
+      condition: event.payload is defined
+      action:
+        print_event: {}
