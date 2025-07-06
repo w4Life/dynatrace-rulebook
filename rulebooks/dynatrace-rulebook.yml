@@ -9,7 +9,7 @@
 
   rules:
     - name: Check event data
-      condition: event.payload.eventData["data"] is 404
+      condition: event.payload.eventData["event.name"] is defined
       action:
         run_job_template:
           name: "Dynatrace job template"
