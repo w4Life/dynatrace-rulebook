@@ -8,9 +8,16 @@
         token: '123456789'
 
   rules:
-    - name: Check event data
-      condition: event.payload.eventData["data"] is defined
+    - name: Check nginx status
+      condition: event.payload.eventData["data"] == "nginx"
       action:
         run_job_template:
-          name: "Dynatrace job template"
+          name: "Dynatrace nginx check job template"
           organization: "Default"  
+
+    - name: Remediation
+      condition: event.payload.eventData["data"] == "remediation"
+      action:
+        run_job_template:
+          name: "Dynatrace remediation job template"
+          organization: "Default"
